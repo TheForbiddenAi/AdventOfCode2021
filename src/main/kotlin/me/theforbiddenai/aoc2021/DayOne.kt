@@ -1,8 +1,10 @@
 package me.theforbiddenai.aoc2021
 
+import java.io.File
+
 class DayOne {
 
-    private val numbers = getResource()
+    private val numbers = getInput()
 
     // Shortly after I wrote this monstrosity I discovered the windowed function rip
 
@@ -11,12 +13,12 @@ class DayOne {
         var count = 0
 
         // for some reason numbers.indices wasn't working correctly?!?!?!?
-        for(i in 0 until numbers.size) {
+        for (i in 0 until numbers.size) {
             if (i == 0) continue
             val num = numbers[i]
             val prev = numbers[i - 1]
 
-            if(num > prev) count++;
+            if (num > prev) count++
         }
 
         println(count)
@@ -32,17 +34,15 @@ class DayOne {
 
         var countInc = 0
         var index = 0
-        while(index < numbers.size) {
+        while (index < numbers.size) {
             val num = numbers[index]
 
             windowTotal += num
             windowSub++
 
-            println("$window - $windowSub - $index - $num - $windowTotal")
 
-            if(windowSub == 3) {
-                if(window != 0 && windowTotal > windowPrevCount) {
-                    println("CALLED")
+            if (windowSub == 3) {
+                if (window != 0 && windowTotal > windowPrevCount) {
                     countInc++
                 }
 
@@ -53,24 +53,20 @@ class DayOne {
                 windowSub = 0
 
                 index -= 1
-                println("\n")
             } else {
                 index++
             }
-
-
 
         }
 
         println(countInc)
     }
 
-    private fun getResource(): MutableList<Int> {
-        val text = DayOne::class.java.getResource("/challenges/day 1.txt").readText()
-        return text.split("\n").map {
-            // Invisible characters go brrrrr
-            it.replace(Regex("\\D+"), "").toInt()
-        }.toMutableList()
+    private fun getInput(): List<Int> {
+        return File("src/main/resources/input/day 1.txt")
+            .readLines()
+            .map { it.toInt() }
+            .toMutableList()
     }
 
 }

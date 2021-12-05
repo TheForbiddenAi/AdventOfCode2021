@@ -1,20 +1,18 @@
 package me.theforbiddenai.aoc2021
 
+import java.io.File
+
 class DayTwo {
 
-    private val instructions = getResource()
+    private val instructions = getInput()
 
     // Answer: 1524750
     fun challengeOne() {
         var depth = 0
         var horizontal = 0
 
-        instructions.map {
-            val args = it.split(Regex("\\s+"))
-            val num = args[1].toInt()
-            args[0] to num
-        }.forEach { (direction, num) ->
-            when(direction) {
+        instructions.forEach { (direction, num) ->
+            when (direction) {
                 "forward" -> horizontal += num
                 "up" -> depth -= num
                 "down" -> depth += num
@@ -31,13 +29,9 @@ class DayTwo {
         var depth = 0
         var horizontal = 0
 
-        instructions.map {
-            val args = it.split(Regex("\\s+"))
-            val num = args[1].toInt()
-            args[0] to num
-        }.forEach { (direction, num) ->
-            when(direction) {
-                "forward" ->  {
+        instructions.forEach { (direction, num) ->
+            when (direction) {
+                "forward" -> {
                     horizontal += num
                     depth += num * aim
                 }
@@ -49,9 +43,13 @@ class DayTwo {
         println("$depth * $horizontal (Aim: $aim) = ${depth * horizontal}")
     }
 
-    private fun getResource(): MutableList<String> {
-        val text = DayOne::class.java.getResource("/challenges/day 2.txt").readText()
-        return text.split("\n").toMutableList()
+    private fun getInput(): List<Pair<String, Int>> {
+        return File("src/main/resources/input/day 2.txt").readLines()
+            .map {
+                val args = it.split(Regex("\\s+"))
+                val num = args[1].toInt()
+                args[0] to num
+            }
     }
 
 }

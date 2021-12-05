@@ -1,8 +1,10 @@
 package me.theforbiddenai.aoc2021
 
+import java.io.File
+
 class DayFive {
 
-    private val lines = getResource()
+    private val lines = getInput()
 
     // Answer 7438
     fun challengeOne() {
@@ -72,13 +74,12 @@ class DayFive {
 
     }
 
-    private fun getResource(): MutableList<CoordinateLine> {
-        val text = DayOne::class.java.getResource("/challenges/day 5.txt").readText()
+    private fun getInput(): List<CoordinateLine> {
+        val text = File("src/main/resources/input/day 5.txt").readLines()
 
         val coordinateLines = mutableListOf<CoordinateLine>()
 
-        text.split("\n")
-            .map { it.split("->") }
+        text.map { it.split("->") }
             .forEach { (pairOne, pairTwo) ->
                 val oneArgs = pairOne.trim().split(",").mapNotNull { it.toIntOrNull() }
                 val twoArgs = pairTwo.trim().split(",").mapNotNull { it.toIntOrNull() }

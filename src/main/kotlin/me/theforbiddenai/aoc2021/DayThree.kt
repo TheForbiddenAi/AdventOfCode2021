@@ -1,8 +1,10 @@
 package me.theforbiddenai.aoc2021
 
+import java.io.File
+
 class DayThree {
 
-    private val binary = getResource()
+    private val binary = getInput()
     private val length = binary[0].length
 
     // Answer: 775304
@@ -39,19 +41,17 @@ class DayThree {
             val zeroCount = array.size - oneCount
 
             // Ah, yes readability at its finest. I could probably make this nicer, but I can't be bothered to since it works.
-            val remove = if(oxygen) if (oneCount >= zeroCount) 0 else 1
+            val remove = if (oxygen) if (oneCount >= zeroCount) 0 else 1
             else if (oneCount >= zeroCount) 1 else 0
 
             array.removeIf { it[i].digitToInt() == remove }
-            if(array.size == 1) return array[0].toInt(2)
+            if (array.size == 1) return array[0].toInt(2)
         }
         return 0
     }
 
-    private fun getResource(): MutableList<String> {
-        val text = DayOne::class.java.getResource("/challenges/day 3.txt").readText()
-        // I love invisible characters.......
-        return text.split("\n").map { it.replace(Regex("\\D+"), "") }.toMutableList()
+    private fun getInput(): List<String> {
+        return File("src/main/resources/input/day 3.txt").readLines()
     }
 
 }

@@ -1,9 +1,11 @@
 package me.theforbiddenai.aoc2021
 
+import java.io.File
+
 // Welcome to over-engineered bingo! lmao
 class DayFour {
 
-    private val resource = getResource()
+    private val input = getInput()
     private val numbers = getNumbers()
     private val bingoCards = getBingoCards()
 
@@ -13,7 +15,7 @@ class DayFour {
         println(bingo.getUnmarkedNumbers(numbers).sum() * bingo.getLastNumber(numbers))
     }
 
-    // Answer 26878 (Lmao only needed to change minByOrNull to maxByOrNull)
+    // Answer 26878
     fun challengeTwo() {
         val bingo = bingoCards.maxByOrNull { it.simulateGame(numbers) } ?: bingoCards[0]
         println(bingo.getUnmarkedNumbers(numbers).sum() * bingo.getLastNumber(numbers))
@@ -63,24 +65,23 @@ class DayFour {
         }
 
         private fun getHighestIndex(input: List<Int>, numbers: List<Int>): Int {
-            return input.map { numbers.indexOf(it) }.maxOrNull() ?: -1
+            return input.maxOfOrNull { numbers.indexOf(it) } ?: -1
         }
 
     }
 
-    private fun getResource(): MutableList<String> {
-        val text = DayOne::class.java.getResource("/challenges/day 4.txt").readText()
-        return text.split("\n").toMutableList()
-    }
-
     private fun getNumbers(): List<Int> {
-        return resource[0].split(",").mapNotNull { it.replace(Regex("\\D+"), "").toIntOrNull() }
+        return input[0].split(",").mapNotNull { it.replace(Regex("\\D+"), "").toIntOrNull() }
     }
 
     private fun getBingoCards(): List<BingoCard> {
-        return resource.filter { it.isNotBlank() && !it.contains(",") }
+        return input.filter { it.isNotBlank() && !it.contains(",") }
             .map { it.trim() }
             .windowed(5, step = 5)
             .map { BingoCard(it) }
+    }
+
+    private fun getInput(): List<String> {
+        return File("src/main/resources/input/day 4.txt").readLines()
     }
 }
