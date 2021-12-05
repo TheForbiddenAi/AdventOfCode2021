@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "me.mason"
+group = "me.theforbiddenai"
 version = "1.0-SNAPSHOT"
 
 repositories {

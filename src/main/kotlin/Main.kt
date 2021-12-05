@@ -1,10 +1,6 @@
-import me.theforbiddenai.aoc2021.DayFour
-import me.theforbiddenai.aoc2021.DayOne
-import me.theforbiddenai.aoc2021.DayThree
-import me.theforbiddenai.aoc2021.DayTwo
+import me.theforbiddenai.aoc2021.DayFive
 
-fun main(args: Array<String>) {
-    val dayFour = DayFour()
-    dayFour.challengeOne()
-    dayFour.challengeTwo()
+fun main() {
+    val dayFive = DayFive()
+    dayFive.challengeTwo()
 }
