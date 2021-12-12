@@ -24,7 +24,6 @@ class DayNine {
         basinSizes.sort()
         basinSizes.reverse()
         println(basinSizes[0] * basinSizes[1] * basinSizes[2])
-
     }
 
     private fun calculateBasinSize(
