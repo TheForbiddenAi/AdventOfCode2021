@@ -1,6 +1,6 @@
-import me.theforbiddenai.aoc2021.DaySeven
+import me.theforbiddenai.aoc2021.DayNine
 
 fun main() {
-    val daySeven = DaySeven()
-    daySeven.challengeTwo()
+    val dayNine = DayNine()
+    dayNine.challengeTwo()
 }
